@@ -22,7 +22,7 @@ int main()
 	if(flag==1)
 	printf("\n Valid identifier");
 }
-[10:40 am, 09/05/2023] Leena: #include <stdio.h>
+#include <stdio.h>
 
 int main() {
     int a, b, c;
