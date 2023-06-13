@@ -1,0 +1,59 @@
+Input Source Program: (sample.html)
+<html>
+<body>
+<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+</body>
+</html>
+Program: (html.l)
+%{
+int tags;
+%}
+%%
+"<"[^>]*>  { tags++; printf("%s \n", yytext); }
+.|\n { }
+%%
+int yywrap(void) {
+return 1; }
+int main(void)
+{
+FILE *f;
+char file[10];
+printf("Enter File Name : ");
+scanf("%s",file);
+f = fopen(file,"r");
+yyin = f;
+yylex();
+printf("\n Number of html tags: %d",tags);
+fclose(yyin);  
+}
+
+output:
+Microsoft Windows [Version 10.0.18362.239]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\PADMASRI>cd Documents
+
+C:\Users\PADMASRI\Documents>lex 24.l
+
+C:\Users\PADMASRI\Documents>gcc -o 24 lex.yy.c
+
+C:\Users\PADMASRI\Documents>24.exe 24.l
+Enter File Name : 24.html
+<html>
+
+<body>
+
+<h1>
+My First Heading</h1>
+
+<p>
+My first paragraph.</p>
+
+</body>
+
+</html>
+
+
+ Number of html tags: 8
+C:\Users\PADMASRI\Documents>
